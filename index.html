@@ -12,7 +12,6 @@
       --rose:  #e8405a;
       --blush: #f9c4cf;
       --cream: #fff5f7;
-      --gold:  #d4a843;
       --deep:  #8b1a2e;
       --text:  #4a1020;
     }
@@ -26,7 +25,7 @@
       cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%F0%9F%92%8C%3C/text%3E%3C/svg%3E") 16 16, auto;
     }
 
-    #bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    #bg-canvas { position:fixed; inset:0; z-index:0; pointer-events:none; }
 
     /* ── CARD ── */
     #card {
@@ -43,113 +42,113 @@
       overflow: visible;
     }
     #card::before {
-      content: '';
-      position: absolute; top:-2px; left:-2px; right:-2px; bottom:-2px;
-      border-radius: 30px;
-      background: linear-gradient(135deg,#f9c4cf55,#e8405a22,#f9c4cf55);
-      z-index: -1; pointer-events: none;
+      content:''; position:absolute; top:-2px; left:-2px; right:-2px; bottom:-2px;
+      border-radius:30px;
+      background:linear-gradient(135deg,#f9c4cf55,#e8405a22,#f9c4cf55);
+      z-index:-1; pointer-events:none;
     }
 
     .ribbon {
       font-size: clamp(1.3rem,4vw,2rem);
-      letter-spacing: .4rem;
-      margin-bottom: 8px;
+      letter-spacing:.4rem; margin-bottom:8px;
       animation: float 3s ease-in-out infinite;
     }
     @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
 
     h1 {
-      font-family: 'Dancing Script', cursive;
-      font-size: clamp(1.8rem,5vw,3.2rem);
-      color: var(--rose); line-height: 1.2; margin-bottom: 10px;
+      font-family:'Dancing Script',cursive;
+      font-size:clamp(1.8rem,5vw,3.2rem);
+      color:var(--rose); line-height:1.2; margin-bottom:10px;
     }
     .subtitle {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: clamp(.85rem,2.5vw,1rem);
-      color: #b06070;
-      margin-bottom: clamp(20px,5vw,42px);
-      letter-spacing: .02em;
+      font-family:'Playfair Display',serif; font-style:italic;
+      font-size:clamp(.85rem,2.5vw,1rem);
+      color:#b06070; margin-bottom:clamp(20px,5vw,42px); letter-spacing:.02em;
     }
     .bear {
-      font-size: clamp(3.2rem,10vw,5.5rem);
-      margin-bottom: clamp(12px,4vw,28px);
-      display: block;
-      animation: bounce 2s ease-in-out infinite;
+      font-size:clamp(3.2rem,10vw,5.5rem);
+      margin-bottom:clamp(12px,4vw,28px); display:block;
+      animation:bounce 2s ease-in-out infinite;
     }
     @keyframes bounce { 0%,100%{transform:scale(1) rotate(-4deg)} 50%{transform:scale(1.08) rotate(4deg)} }
 
     /* ── BUTTONS ── */
     .btn-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 70px; /* keeps space after No escapes */
+      display:flex; align-items:center; justify-content:center;
+      min-height:70px;
     }
 
     .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      border: none; border-radius: 50px;
-      font-family: 'Dancing Script', cursive; font-weight: 700;
-      cursor: pointer; white-space: nowrap;
-      -webkit-tap-highlight-color: transparent;
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      border:none; border-radius:50px;
+      font-family:'Dancing Script',cursive; font-weight:700;
+      cursor:pointer; white-space:nowrap;
+      -webkit-tap-highlight-color:transparent;
     }
 
     #btn-yes {
-      background: linear-gradient(135deg, var(--rose), var(--deep));
-      color: #fff;
-      font-size: 1.4rem; padding: 14px 36px;
-      box-shadow: 0 6px 24px rgba(232,64,90,.4);
-      transition: font-size .3s cubic-bezier(.34,1.56,.64,1),
-                  padding   .3s cubic-bezier(.34,1.56,.64,1),
-                  box-shadow .2s;
-      touch-action: manipulation;
+      background:linear-gradient(135deg,var(--rose),var(--deep));
+      color:#fff; font-size:1.4rem; padding:14px 36px;
+      box-shadow:0 6px 24px rgba(232,64,90,.4);
+      transition:
+        font-size .3s cubic-bezier(.34,1.56,.64,1),
+        padding   .3s cubic-bezier(.34,1.56,.64,1),
+        box-shadow .2s;
+      touch-action:manipulation;
     }
-    #btn-yes:hover  { box-shadow: 0 10px 36px rgba(232,64,90,.55); transform: scale(1.06); }
-    #btn-yes:active { transform: scale(.97); }
+    #btn-yes:hover  { box-shadow:0 10px 36px rgba(232,64,90,.55); transform:scale(1.06); }
+    #btn-yes:active { transform:scale(.97); }
 
-    /* No button — starts inline, JS switches to position:fixed */
+    /*
+      No button is ALWAYS position:fixed.
+      JS places it on top of the card's button row on init.
+      No layout switch ever happens → no first-tap vanish.
+    */
     #btn-no {
-      background: #f2e8ea; color: #c07080;
-      font-size: 1.1rem; padding: 12px 28px;
-      box-shadow: 0 3px 12px rgba(0,0,0,.08);
-      margin-left: 20px;
-      transition: left .2s cubic-bezier(.34,1.56,.64,1),
-                  top  .2s cubic-bezier(.34,1.56,.64,1),
-                  font-size .2s, padding .2s, opacity .3s;
-      touch-action: none; /* prevents scroll-interference on touch */
-      user-select: none; -webkit-user-select: none;
+      position: fixed;   /* set from the start */
+      background:#f2e8ea; color:#c07080;
+      font-size:1.1rem; padding:12px 28px;
+      box-shadow:0 3px 12px rgba(0,0,0,.08);
+      z-index: 50;
+      /* transition kicks in after init class is removed */
+      transition:
+        left .22s cubic-bezier(.34,1.56,.64,1),
+        top  .22s cubic-bezier(.34,1.56,.64,1),
+        font-size .2s, padding .2s, opacity .4s;
+      touch-action:none;
+      user-select:none; -webkit-user-select:none;
     }
-    #btn-no:hover { background: #eddde0; }
+    /* While .init is present, disable transitions so it snaps to start position */
+    #btn-no.init { transition: none !important; }
+    #btn-no:hover { background:#eddde0; }
 
     /* ── CELEBRATION ── */
     #celebration {
-      display: none; position: fixed; inset: 0; z-index: 200;
-      flex-direction: column; align-items: center; justify-content: center;
-      background: radial-gradient(ellipse at center,#fff0f3 0%,#ffe4ea 60%,#ffc8d3 100%);
-      animation: fadeIn .5s ease;
-      padding: 20px; text-align: center;
+      display:none; position:fixed; inset:0; z-index:200;
+      flex-direction:column; align-items:center; justify-content:center;
+      background:radial-gradient(ellipse at center,#fff0f3 0%,#ffe4ea 60%,#ffc8d3 100%);
+      animation:fadeIn .5s ease;
+      padding:20px; text-align:center;
     }
-    #celebration.show { display: flex; }
+    #celebration.show { display:flex; }
     @keyframes fadeIn { from{opacity:0;transform:scale(.94)} to{opacity:1;transform:scale(1)} }
 
     .cel-emoji {
-      font-size: clamp(4rem,12vw,6rem);
-      animation: pop .5s cubic-bezier(.34,1.56,.64,1);
+      font-size:clamp(4rem,12vw,6rem);
+      animation:pop .5s cubic-bezier(.34,1.56,.64,1);
     }
     @keyframes pop { 0%{transform:scale(0) rotate(-20deg)} 100%{transform:scale(1) rotate(0)} }
-
     .cel-title {
-      font-family: 'Dancing Script', cursive;
-      font-size: clamp(2.2rem,8vw,5rem);
-      color: var(--rose); margin: 20px 0 10px;
-      animation: slideUp .6s .15s both;
+      font-family:'Dancing Script',cursive;
+      font-size:clamp(2.2rem,8vw,5rem);
+      color:var(--rose); margin:20px 0 10px;
+      animation:slideUp .6s .15s both;
     }
     .cel-sub {
-      font-family: 'Playfair Display', serif; font-style: italic;
-      font-size: clamp(.95rem,3vw,1.4rem);
-      color: var(--deep); max-width: 420px; line-height: 1.7;
-      animation: slideUp .6s .3s both;
+      font-family:'Playfair Display',serif; font-style:italic;
+      font-size:clamp(.95rem,3vw,1.4rem);
+      color:var(--deep); max-width:420px; line-height:1.7;
+      animation:slideUp .6s .3s both;
     }
     @keyframes slideUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
 
@@ -165,17 +164,22 @@
   <span class="bear" id="bear">🐻</span>
   <h1>Will you be my Valentine?</h1>
   <p class="subtitle" id="subtitle">You make my heart go boom 💓</p>
+  <!-- No button is NOT inside btn-row — it's fixed over it on init -->
   <div class="btn-row" id="btn-row">
     <button class="btn" id="btn-yes" onclick="sayYes()">Yes! 💘</button>
-    <button class="btn" id="btn-no">No 😔</button>
+    <!-- spacer keeps the row the right width so Yes isn't centred off -->
+    <div id="no-placeholder" style="display:inline-block;width:110px;height:48px;"></div>
   </div>
 </div>
+
+<!-- No button lives outside the card so fixed works correctly -->
+<button class="btn init" id="btn-no">No 😔</button>
 
 <div id="celebration">
   <canvas id="confetti-canvas"></canvas>
   <div class="cel-emoji">🥰</div>
   <h2 class="cel-title">YAY! I knew it! 💕</h2>
-  <p class="cel-sub">You've made me the happiest bear in the whole wide world.<br>Happy Valentine's Day, my love! 🌹✨</p>
+  <p class="cel-sub">You've made me the happiest man in the whole wide world.<br>Happy Valentine's Day, my love! 🌹✨</p>
 </div>
 
 <script>
@@ -186,9 +190,9 @@
   const HEARTS = '💗💓💖💝💘';
   let W, H;
   const particles = [];
-  function resize(){ W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+  function resize(){ W=canvas.width=innerWidth; H=canvas.height=innerHeight; }
   resize(); window.addEventListener('resize', resize);
-  const r = (a,b) => Math.random()*(b-a)+a;
+  const r=(a,b)=>Math.random()*(b-a)+a;
   for(let i=0;i<26;i++) particles.push({
     x:r(0,1), y:r(0,1), size:r(16,36), speed:r(.0003,.0009),
     sway:r(.0002,.0005), phase:r(0,Math.PI*2),
@@ -196,13 +200,13 @@
   });
   (function draw(){
     ctx.clearRect(0,0,W,H);
-    const t = performance.now();
+    const t=performance.now();
     for(const p of particles){
-      p.y -= p.speed;
+      p.y-=p.speed;
       if(p.y<-.08){ p.y=1.05; p.x=r(0,1); }
-      ctx.globalAlpha = p.opacity;
-      ctx.font = p.size+'px serif';
-      ctx.fillText(p.emoji, p.x*W + Math.sin(t*p.sway+p.phase)*28, p.y*H);
+      ctx.globalAlpha=p.opacity;
+      ctx.font=p.size+'px serif';
+      ctx.fillText(p.emoji, p.x*W+Math.sin(t*p.sway+p.phase)*28, p.y*H);
     }
     ctx.globalAlpha=1;
     requestAnimationFrame(draw);
@@ -210,28 +214,52 @@
 })();
 
 
-/* ─── NO BUTTON LOGIC ─── */
-const noBtn  = document.getElementById('btn-no');
-const yesBtn = document.getElementById('btn-yes');
+/* ─── INIT: snap No button on top of its placeholder ─── */
+const noBtn      = document.getElementById('btn-no');
+const yesBtn     = document.getElementById('btn-yes');
+const placeholder = document.getElementById('no-placeholder');
 
-let yesLevel  = 0;
-let noIsFixed = false;
+function snapNoToPlaceholder(){
+  const r = placeholder.getBoundingClientRect();
+  noBtn.style.left = r.left + 'px';
+  noBtn.style.top  = r.top  + 'px';
+}
 
-const noMessages = ["No 😔","Are you sure? 🥺","Please?? 🙏","WAIT— 😱","Come back! 💨","…nope 💨"];
-const bearMoods  = ['🐻','🥺','😢','😭','🙈','🙈'];
-const subtitles  = [
-  "You make my heart go boom 💓",
-  "Think carefully… 🥺",
-  "I have chocolates for you! 🍪",
-  "I'll be your best friend! 🌸",
-  "Last chance… pleasss 💔",
-  "Fine… no cookies for you 😤"
+// Wait for fonts/layout, then position — still in .init (no transition)
+window.addEventListener('load', () => {
+  snapNoToPlaceholder();
+  // Remove .init one frame later so transitions are now live
+  requestAnimationFrame(() => noBtn.classList.remove('init'));
+});
+
+// Also reposition on resize so it doesn't drift
+window.addEventListener('resize', () => {
+  if(!hasEscaped) snapNoToPlaceholder();
+});
+
+
+/* ─── NO BUTTON STAGES ─── */
+// 10 stages before the button disappears
+const stages = [
+  { msg:"No 😔",            bear:'🐻',  sub:"You make my heart go boom 💓",         sz:1.1, py:12, px:28, op:1 },
+  { msg:"No… 😕",           bear:'🐻',  sub:"Are you sure about that? 🥺",          sz:1.1, py:12, px:28, op:1 },
+  { msg:"Still no 😬",      bear:'🥺',  sub:"Think carefully… 🥺",                  sz:1.0, py:11, px:24, op:.95 },
+  { msg:"Nope 🙈",          bear:'🥺',  sub:"I mhave chocolates for you! 🍪",           sz:1.0, py:11, px:24, op:.9 },
+  { msg:"Nu-uh 😤",         bear:'😢',  sub:"I'll be your best companion! 🌸",         sz:.9,  py:10, px:20, op:.85 },
+  { msg:"Noooo 😭",         bear:'😢',  sub:"Please?? I beg you 🙏",                sz:.85, py:9,  px:18, op:.75 },
+  { msg:"WHY 😱",           bear:'😭',  sub:"Last chance, pleasssseee 🍪💔",         sz:.8,  py:8,  px:16, op:.65 },
+  { msg:"STOP 💨",          bear:'😭',  sub:"You're breaking my heart 💔",          sz:.75, py:7,  px:14, op:.5  },
+  { msg:"…fine 😤",         bear:'🙈',  sub:"Fine… no chocolates for you 😤",          sz:.7,  py:6,  px:12, op:.35 },
+  { msg:"zzz 💤",           bear:'🙈',  sub:"Ok I'll just be over here… alone 😔",  sz:.65, py:5,  px:10, op:.2  },
 ];
 
+let escapeCount = 0;
+let hasEscaped  = false;
+
 function teleportNo(){
-  const btnW = noBtn.offsetWidth  || 90;
+  const btnW = noBtn.offsetWidth  || 100;
   const btnH = noBtn.offsetHeight || 44;
-  const pad  = 18;
+  const pad  = 16;
   const maxX = window.innerWidth  - btnW - pad;
   const maxY = window.innerHeight - btnH - pad;
   const yRect = yesBtn.getBoundingClientRect();
@@ -241,11 +269,10 @@ function teleportNo(){
     nx = pad + Math.floor(Math.random() * Math.max(maxX - pad, 10));
     ny = pad + Math.floor(Math.random() * Math.max(maxY - pad, 10));
     tries++;
-    // avoid landing on top of the Yes button
   } while(
     tries < 20 &&
-    nx < yRect.right  + 24 && nx + btnW > yRect.left   - 24 &&
-    ny < yRect.bottom + 24 && ny + btnH > yRect.top    - 24
+    nx < yRect.right  + 28 && nx + btnW > yRect.left  - 28 &&
+    ny < yRect.bottom + 28 && ny + btnH > yRect.top   - 28
   );
 
   noBtn.style.left = nx + 'px';
@@ -253,53 +280,51 @@ function teleportNo(){
 }
 
 function runAway(e){
-  // KEY FIX: preventDefault on touchstart prevents the tap from
-  // being treated as a click, so the button can never be "tapped" directly.
+  // CRITICAL: preventDefault on touchstart stops the touch becoming a click
   if(e && e.cancelable) e.preventDefault();
 
-  yesLevel = Math.min(yesLevel + 1, 6);
+  hasEscaped = true;
 
-  // On first escape: snapshot position and switch to fixed
-  if(!noIsFixed){
-    const rect = noBtn.getBoundingClientRect();
-    noBtn.style.position = 'fixed';
-    noBtn.style.margin   = '0';
-    noBtn.style.left = rect.left + 'px';
-    noBtn.style.top  = rect.top  + 'px';
-    noIsFixed = true;
-    // One rAF so browser registers the "from" position before animating away
-    requestAnimationFrame(teleportNo);
-  } else {
-    teleportNo();
-  }
+  // Clamp to last stage index
+  const idx = Math.min(escapeCount, stages.length - 1);
+  const s   = stages[idx];
+
+  // Apply stage styles to No button
+  noBtn.textContent    = s.msg;
+  noBtn.style.fontSize = s.sz  + 'rem';
+  noBtn.style.padding  = s.py  + 'px ' + s.px + 'px';
+  noBtn.style.opacity  = s.op;
+
+  // Update card mood
+  document.getElementById('bear').textContent     = s.bear;
+  document.getElementById('subtitle').textContent = s.sub;
 
   // Grow Yes button
-  const sz = 1.4 + yesLevel * 0.55;
-  const py = 14  + yesLevel * 6;
-  const px = 36  + yesLevel * 10;
-  yesBtn.style.fontSize = sz + 'rem';
-  yesBtn.style.padding  = py + 'px ' + px + 'px';
+  const yesScale = 1.4 + escapeCount * 0.45;
+  const yesPy    = 14  + escapeCount * 5;
+  const yesPx    = 36  + escapeCount * 9;
+  yesBtn.style.fontSize = Math.min(yesScale, 4.5) + 'rem';
+  yesBtn.style.padding  = yesPy + 'px ' + yesPx + 'px';
 
-  // Update moods
-  const idx = Math.min(yesLevel - 1, noMessages.length - 1);
-  noBtn.textContent = noMessages[idx];
-  document.getElementById('bear').textContent     = bearMoods[idx];
-  document.getElementById('subtitle').textContent = subtitles[idx];
+  // Teleport No button away
+  teleportNo();
 
-  if(yesLevel >= 5){
-    noBtn.style.fontSize = '.75rem';
-    noBtn.style.padding  = '8px 14px';
-    noBtn.style.opacity  = '0.4';
+  escapeCount++;
+
+  // After all stages, fade out and remove
+  if(escapeCount >= stages.length){
+    noBtn.style.opacity = '0';
+    setTimeout(() => { noBtn.style.display = 'none'; }, 500);
   }
 }
 
 // Desktop: escape on hover
-noBtn.addEventListener('mouseover', () => runAway());
+noBtn.addEventListener('mouseover', runAway);
 
-// Mobile: intercept touchstart BEFORE the tap fires
-// { passive: false } is required to allow e.preventDefault()
+// Mobile: intercept touchstart BEFORE tap fires
+// { passive: false } required so we can call preventDefault()
 noBtn.addEventListener('touchstart', function(e){
-  e.preventDefault(); // stops the "click" from ever firing at the new position
+  e.preventDefault(); // blocks the click from ever firing at the new position
   runAway(e);
 }, { passive: false });
 
@@ -322,13 +347,13 @@ function launchConfetti(){
   const pieces = [];
 
   for(let i=0;i<200;i++) pieces.push({
-    x: Math.random()*canvas.width,
-    y: Math.random()*-canvas.height*1.2,
-    w: Math.random()*13+5, h: Math.random()*8+4,
-    color: COLORS[Math.floor(Math.random()*COLORS.length)],
-    shape: SHAPES[Math.floor(Math.random()*SHAPES.length)],
-    spin:  Math.random()*6-3, angle: Math.random()*Math.PI*2,
-    vx: Math.random()*3-1.5, vy: Math.random()*2.5+1.5, alpha: 1
+    x:Math.random()*canvas.width,
+    y:Math.random()*-canvas.height*1.2,
+    w:Math.random()*13+5, h:Math.random()*8+4,
+    color:COLORS[Math.floor(Math.random()*COLORS.length)],
+    shape:SHAPES[Math.floor(Math.random()*SHAPES.length)],
+    spin:Math.random()*6-3, angle:Math.random()*Math.PI*2,
+    vx:Math.random()*3-1.5, vy:Math.random()*2.5+1.5, alpha:1
   });
 
   function drawHeart(c,x,y,s){
@@ -339,21 +364,21 @@ function launchConfetti(){
     c.quadraticCurveTo(x,y+s*.6,x,y+s/4); c.closePath(); c.fill();
   }
 
-  let frame = 0;
+  let frame=0;
   (function tick(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    frame++; let alive = false;
+    frame++; let alive=false;
     for(const p of pieces){
       p.y+=p.vy; p.x+=p.vx; p.angle+=p.spin*.04;
-      if(frame>100) p.alpha-=.014;
+      if(frame>100) p.alpha-=.013;
       if(p.y<canvas.height+20 && p.alpha>0) alive=true;
       ctx.save();
       ctx.globalAlpha=Math.max(0,p.alpha);
       ctx.translate(p.x,p.y); ctx.rotate(p.angle);
       ctx.fillStyle=p.color;
-      if(p.shape==='rect')        ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+      if(p.shape==='rect')         ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
       else if(p.shape==='circle'){ ctx.beginPath(); ctx.arc(0,0,p.w/2,0,Math.PI*2); ctx.fill(); }
-      else                        drawHeart(ctx,-p.w/2,-p.w/2,p.w);
+      else                         drawHeart(ctx,-p.w/2,-p.w/2,p.w);
       ctx.restore();
     }
     if(alive) requestAnimationFrame(tick);
